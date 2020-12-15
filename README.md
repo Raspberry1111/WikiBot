@@ -1,3 +1,4 @@
+### [If Wikipedia has given you $2.75 of information, please donate!](https://donate.wikimedia.org/w/index.php?title=Special:LandingPage&country=US&uselang=en&utm_medium=portal&utm_source=portalBanner_en6C_2020c_hdr_2&utm_campaign=portalBanner)
 # WikiBot, The Discord bot to help your facts!
 This Discord bot aims to help people fact-check with [Wikipedia](https://wikipedia.org) more easily! 
 
