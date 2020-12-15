@@ -100,9 +100,7 @@ const command: Command = {
 							.catch((e) => console.error(e));
 					}
 					message.channel.send(
-						embed
-							.addFields(resultsData)
-							.setColor("#AAAAAA")
+						embed.addFields(resultsData).setColor("#AAAAAA")
 					);
 				});
 		}

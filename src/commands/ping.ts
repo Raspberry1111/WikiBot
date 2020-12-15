@@ -1,4 +1,4 @@
-import { Command } from "../commandTools"
+import { Command } from "../commandTools";
 
 const command: Command = {
 	name: "ping",
@@ -8,4 +8,4 @@ const command: Command = {
 	},
 };
 
-export default command
+export default command;
