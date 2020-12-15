@@ -1,5 +1,5 @@
 # WikiBot, The Discord bot to help your facts!
-This Discord bot aims to help people fact-check! 
+This Discord bot aims to help people fact-check with [Wikipedia](https://wikipedia.org) more easily! 
 
 ## Commands
 
