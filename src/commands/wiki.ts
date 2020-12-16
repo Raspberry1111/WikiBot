@@ -3,6 +3,7 @@ import f from "node-fetch";
 import { MessageEmbed } from "discord.js";
 import { URLSearchParams } from "url";
 
+
 const fetch = (url: string) =>
 	f(url, {
 		headers: {
@@ -13,7 +14,7 @@ const fetch = (url: string) =>
 const command: Command = {
 	name: "wiki",
 	description: "Pulls the first paragraph of a wikipedia article.",
-	usage: "[summary|search] [page id|search term]",
+	usage: "[summary|search] [pageid|search term]",
 	args: true,
 	execute(message, args) {
 		if (!args) return;
@@ -26,6 +27,7 @@ const command: Command = {
 				.then((res) => res.json())
 				.then((data) => {
 					try {
+						// Get an articles first paragraph
 						const page =
 							data.query.pages[Object.keys(data.query.pages)[0]];
 
@@ -33,10 +35,12 @@ const command: Command = {
 						if (extract.length > 364) {
 							extract = extract.substring(0, 364) + " ...";
 						}
+						// Recieve Article's image
 						const imageUrl = `https://en.wikipedia.org/w/api.php?action=query&pageids=${pageId}&prop=pageimages&format=json&pithumbsize=2048`;
 						fetch(imageUrl)
 							.then((t) => t.json())
 							.then((imageData) => {
+								
 								const embed = new MessageEmbed()
 									.setTitle(page.title)
 									.setAuthor("Wikipedia")
@@ -71,12 +75,17 @@ const command: Command = {
 				.then(async (results: Array<Array<string>>) => {
 					let embed = new MessageEmbed()
 						.setAuthor("Wikipedia")
+						.setColor("#AAAAAA")
 						.setURL("https://www.wikipedia.org");
+					// Will store the result after they are parsed
 					let resultsData: Array<{
 						name: string;
 						value: string;
 						inline?: boolean;
 					}> = [];
+					// Loop through every result
+					// And Parse the image, title, and url
+
 					for (let i = 0; i < results[1].length; i++) {
 						const title = results[1][i];
 						const url = results[3][i];
@@ -96,11 +105,12 @@ const command: Command = {
 									value: `${process.env.PREFIX}wiki summary [${pageId}](${url})`,
 									inline: true,
 								});
+								
 							})
 							.catch((e) => console.error(e));
 					}
 					message.channel.send(
-						embed.addFields(resultsData).setColor("#AAAAAA")
+						embed.addFields(resultsData)
 					);
 				});
 		}

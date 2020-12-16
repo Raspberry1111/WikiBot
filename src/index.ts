@@ -7,7 +7,7 @@ import { Command } from "./commandTools";
 import Commands from "./commandLoader";
 import { cooldowns, commandOnCooldown } from "./cooldownManager";
 
-// Extends Client to allow the property commands
+// Extends Client to allow custom properties
 class WikiBot extends Client {
 	commands = Commands;
 	cooldowns = cooldowns;
@@ -26,6 +26,7 @@ client.on("message", (message) => {
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const commandName = args.shift()?.toLowerCase();
 
+	// If that command exists, run it
 	if (!commandName) return;
 	const command =
 		client.commands.get(commandName) ||
